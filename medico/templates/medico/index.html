@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Médico
+{% endblock title %}
+
+{% block content %}
+    <h1> Médicos Cadastrados </h1>
+    <hr>
+    <p>Adicionar: <a href="{% url 'medicos:add-medico' %}"> <button class="btn btn-primary"> novo médico </button>  </a> </p>
+    <br>
+
+    {% if object_list %}
+        <table class="table">
+            <thead>
+               <tr>
+                   <th scope="col">#</th>
+                   <th scope="col">Médico</th>
+                   <th scope="col">Data de admissão</th>
+                   <th scope="col">Ativo?</th>
+                   <th scope="col">Posto de trabalho</th>
+                   <th scope="col">Ações</th>
+               </tr>
+            </thead>
+            <tbody>
+                {% for medico in object_list %}
+                   <tr>
+                       <th scope="row">{{medico.id}}</th>
+                       <td>{{medico.nome}} {{medico.sobrenome}}</td>
+                       <td>{{medico.data_de_admissao}}</td>
+                       <td>{{medico.ativo}}</td>
+                       <td>{{medico.posto_de_trabalho}}</td>
+                       <td>
+                           <a href="{% url 'medicos:upd-medico' medico.pk %}"> Editar </a>
+                           <a href="{% url 'medicos:del-medico' medico.pk %}"> Deletar </a>
+                       </td>
+                   </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+        <h2> Ainda não há médicos cadastrados. </h2>
+
+    {% endif %}
+
+{% endblock content %}

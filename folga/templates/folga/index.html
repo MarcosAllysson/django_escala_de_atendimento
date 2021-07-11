@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Folga
+{% endblock title %}
+
+{% block content %}
+    <h1> Folga dos Médicos </h1>
+    <hr>
+    <p>Adicionar: <a href="{% url 'folga:add-folga' %}"> <button class="btn btn-primary"> folga para o médico </button> </a> </p>
+    <br>
+
+    {% if object_list %}
+        <table class="table">
+            <thead>
+               <tr>
+                   <th scope="col">#</th>
+                   <th scope="col">Médico</th>
+                   <th scope="col">Dia da folga</th>
+                   <th scope="col">Ações</th>
+               </tr>
+            </thead>
+            <tbody>
+                {% for folga in object_list %}
+                   <tr>
+                       <th scope="row">{{folga.id}}</th>
+                       <td>{{folga.medico.nome}} {{folga.medico.sobrenome}}</td>
+                       <td>{{folga.dia_de_folga}}</td>
+                       <td>
+                           <a href="{% url 'folga:upd-folga' folga.pk %}"> Editar </a>
+                           <a href="{% url 'folga:del-folga' folga.pk %}"> Excluir </a>
+                       </td>
+                   </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+        <h2> Ainda não há folgas cadastradas. </h2>
+
+    {% endif %}
+
+{% endblock content %}

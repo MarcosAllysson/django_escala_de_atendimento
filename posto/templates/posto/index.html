@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Posto de Trabalho
+{% endblock title %}
+
+{% block content %}
+    <h1> Postos de Trabalho </h1>
+    <hr>
+    <p>Adicionar: <a href="{% url 'posto:add-posto' %}"> <button type="button" class="btn btn-primary"> posto de trabalho </button> </a> </p>
+    <br>
+
+    {% if object_list %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Posto</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">Ativo?</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for posto in object_list %}
+                    <tr>
+                        <th scope="row">{{posto.id}}</th>
+                        <td>{{posto.nome_do_posto}}</td>
+                        <td>{{posto.endereco}}</td>
+                        <td>{{posto.ativo}}</td>
+                        <td>
+                            <a href="{% url 'posto:upd-posto' posto.pk %}"> Editar </a> </p>
+                            <a href="{% url 'posto:del-posto' posto.pk %}"> Deletar </a> </p>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+        <h2> Ainda não há postos de trabalho cadastrados. </h2>
+
+    {% endif %}
+
+{% endblock content %}

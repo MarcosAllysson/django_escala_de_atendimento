@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Escala
+{% endblock title %}
+
+{% block content %}
+    <h1> Escala de Trabalho </h1>
+    <hr>
+    <p>Adicionar: <a href="{% url 'escala:add-escala' %}"> <button class="btn btn-primary"> nova escala </button> </a> </p>
+    <br>
+
+    {% if object_list %}
+        <table class="table">
+            <thead>
+               <tr>
+                   <th scope="col">Dia</th>
+                   <th scope="col">Médico</th>
+                   <th scope="col">Posto de Trabalho</th>
+                   <th scope="col">Ações</th>
+               </tr>
+            </thead>
+            <tbody>
+                {% for escala in object_list %}
+                   <tr>
+                       <th scope="row">{{escala.data}}</th>
+                       <td>{{escala.medico.nome}} {{escala.medico.sobrenome}}</td>
+                       <td> {{escala.posto_de_trabalho}} </td>
+                       <td>
+                            <a href="{% url 'escala:upd-escala' escala.pk %}"> Editar </a>
+                            <a href="{% url 'escala:del-escala' escala.pk %}"> Excluir </a>
+                       </td>
+                   </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+        <h2> Ainda não há escalas cadastradas. </h2>
+
+    {% endif %}
+
+{% endblock content %}

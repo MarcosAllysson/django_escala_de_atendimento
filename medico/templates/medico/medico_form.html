@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block title %}
+    Adicionar Médico
+{% endblock title %}
+
+{% block content %}
+    <h1> Adicione Médico </h1>
+
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit"> Cadastrar </button>
+            <button type="button"> <a href="{% url 'medicos:index' %}"> Cancelar </a> </button>
+        </form>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,1 @@
+web: gunicorn projeto_escala_hospital.wsgi --log-file -

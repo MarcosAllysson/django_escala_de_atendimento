@@ -1,0 +1,30 @@
+{% load static %}
+<!--{% url 'sales:home' as path_to_home %}-->
+{% url 'posto:index' as path_to_posto %}
+{% url 'medicos:index' as path_to_medicos %}
+{% url 'folga:index' as path_to_folga %}
+{% url 'escala:index' as path_to_escala %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == path_to_posto %} active {% endif %}" href="{{path_to_posto}}">Posto</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == path_to_medicos %} active {% endif %}" href="{{path_to_medicos}}">Médico</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == path_to_folga %} active {% endif %}" href="{{path_to_folga}}">Folga</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == path_to_escala %} active {% endif %}" href="{{path_to_escala}}">Escala</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
