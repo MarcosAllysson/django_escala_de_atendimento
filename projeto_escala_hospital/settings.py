@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'projeto_escala_hospital.wsgi.application'
 #     }
 # }
 DATABASES = {
-    'default', dj_database_url.config()
+    'default': dj_database_url.config()
 }
 
 
@@ -130,6 +130,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Caso a aplicação faça upload de arquivos
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
