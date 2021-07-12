@@ -7,4 +7,16 @@ De forma que automatiza a escala via aplicação web com django.
 - Hospedado no Heroku: [clique aqui](https://escaladeatendimento.herokuapp.com/) 
 
 ## Clone a aplicação
-`git clone `
+`git clone https://github.com/MarcosAllysson/django_escala_de_atendimento`
+
+Recomendado ter virtualenv instalado:
+- Ative a venv: `source ./venv/bin/activate`
+
+Instale as dependências:  
+`pip install -r requirements.txt`
+
+Suba aplicação:
+`python manage.py runserver`
+
+Abra a URL no browser:
+`127.0.0.1:8000/`
