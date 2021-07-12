@@ -1,80 +1,129 @@
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.views.generic.edit import DeleteView
 from django.views.generic.list import ListView
 from .models import Folga
+from medico.models import Medico
+from escala.models import Escala
 from .forms import FolgaModelForm
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
+from datetime import datetime, date
 
 
 # Create your views here.
-def home_page(request):
-    print(f'REQUEST: \033[36m {request} \033[m')
-
-    if request.method == 'POST':
-        formulario = FolgaModelForm(request.POST)
-
-        if formulario.is_valid():
-            prod = formulario.save(commit=False)
-
-            print(prod)
-            messages.add_message(request, 'Sucesso')
-
-
-    context = {
-        'form': formulario
-    }
-    return render(request, 'folga/home_page.html', context)
-
-
 class IndexView(ListView):
     model = Folga
     template_name = 'folga/index.html'
 
 
-class CreateFolgaView(CreateView):
-    model = Folga
-    template_name = 'folga/folga_form.html'
-    fields = '__all__'
-    success_url = reverse_lazy('folga:index')
+def create_folga(request):
+    formulario = FolgaModelForm(request.POST)
 
-
-def folga_form(request):
     if request.method == 'POST':
-        formulario = FolgaModelForm(request.POST)
+
         if formulario.is_valid():
-            prod = formulario.save(commit=False)
+            medico = request.POST.get('medico')
+            folga = request.POST.get('dia_de_folga')
 
-            # dados
-            dado = formulario.cleaned_data['']
+            # de string pra date
+            fdt = datetime.strptime(folga, '%d/%m/%Y').date()
+            # data de hoje
+            hoje = date.today()
 
-            print(prod)
+            # Verificando dia da folga.
+            if fdt >= hoje:
+                try:
+                    # analisando se o médico está ativo
+                    medico_qs = Medico.objects.get(id=medico)
+                    medico_status = medico_qs.ativo
 
-            # messages.success(request, 'Sucesso')
-            # prod.save()
+                    # analisando se não está em escala
+                    medico_escala_qs = Escala.objects.filter(medico_id=medico)
 
-            # formulario = FolgaModelForm()
+                    if medico_status and len(medico_escala_qs) == 0:
+                        # salvando dados
+                        formulario.save()
+
+                        # redirecionando
+                        return redirect('folga:index')
+
+                        # messages.success(request, 'Médico pode folgar. Está ativo e não tá em escala.')
+
+                    else:
+                        messages.error(request, 'Médico não pode folgar. Está inativo, em escala ou não foi encontrado.')
+
+                except Exception as e:
+                    print(f'EXCEÇÃO: {e.__class__}, descrição: {e}')
+                    messages.error(request, 'Opa, houve um erro...')
+
+            else:
+                messages.error(request, 'Atente-se a data!')
 
         else:
-            messages.error(request, 'Erro ao salvar produto.')
+            messages.error(request, 'Houve algum erro, tente novamente.')
 
     else:
         formulario = FolgaModelForm()
 
     context = {
-        'formulario': formulario,
+        'form': formulario
     }
-    return render(request, 'folga/folga_form', context)
 
-        # success_url = reverse_lazy('folga:index')
+    return render(request, 'folga/folga_form.html', context)
 
 
-class UpdateFolgaView(UpdateView):
-    model = Folga
-    template_name = 'folga/folga_form.html'
-    fields = '__all__'
-    success_url = reverse_lazy('folga:index')
+def update_folga(request, pk):
+    folga = Folga.objects.get(id=pk)
+    form = FolgaModelForm(instance=folga)
+
+    if request.method == 'POST':
+        form = FolgaModelForm(request.POST, instance=folga)
+
+        if form.is_valid():
+            medico = request.POST.get('medico')
+            folga = request.POST.get('dia_de_folga')
+
+            # de string pra date
+            fdt = datetime.strptime(folga, '%d/%m/%Y').date()
+            # data de hoje
+            hoje = date.today()
+
+            # Verificando dia da folga.
+            if fdt >= hoje:
+                try:
+                    # analisando se o médico está ativo
+                    medico_qs = Medico.objects.get(id=medico)
+                    medico_status = medico_qs.ativo
+
+                    # analisando se não está em escala
+                    medico_escala_qs = Escala.objects.filter(medico_id=medico)
+
+                    if medico_status and len(medico_escala_qs) == 0:
+                        # salvando dados
+                        form.save()
+
+                        # redirecionando
+                        return redirect('folga:index')
+
+                    else:
+                        messages.error(request,
+                                       'Médico não pode folgar. Está inativo, em escala ou não foi encontrado.')
+
+                except Exception as e:
+                    messages.error(request, 'Opa, houve um erro...')
+
+            else:
+                messages.error(request, 'Atente-se a data!')
+
+        else:
+            messages.error(request, 'Houve algum erro, tente novamente.')
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'folga/folga_form.html', context)
 
 
 class DeleteFolgaView(DeleteView):

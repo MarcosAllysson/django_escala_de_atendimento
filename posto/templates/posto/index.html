@@ -18,7 +18,7 @@
                     <th scope="col">Posto</th>
                     <th scope="col">Endereço</th>
                     <th scope="col">Ativo?</th>
-                    <th scope="col">Ações</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -30,7 +30,6 @@
                         <td>{{posto.ativo}}</td>
                         <td>
                             <a href="{% url 'posto:upd-posto' posto.pk %}"> Editar </a> </p>
-                            <a href="{% url 'posto:del-posto' posto.pk %}"> Deletar </a> </p>
                         </td>
                     </tr>
                 {% endfor %}

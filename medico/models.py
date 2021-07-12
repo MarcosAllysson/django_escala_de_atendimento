@@ -14,9 +14,6 @@ class Medico(models.Model):
     def __str__(self):
         return f'{self.nome} {self.sobrenome}'
 
-    def get_absolute_url(self):
-        return reverse('medicos:index', kwargs={'pk': self.pk})
-
     class Meta:
         # Ordenando pelo nome
         ordering = ['nome']

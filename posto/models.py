@@ -11,9 +11,6 @@ class Posto(models.Model):
     def __str__(self):
         return self.nome_do_posto
 
-    def get_absolute_url(self):
-        return reverse('posto:index', kwargs={'pk': self.pk})
-
     class Meta:
         ordering = ['nome_do_posto']
         verbose_name = 'Posto'

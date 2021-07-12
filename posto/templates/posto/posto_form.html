@@ -12,8 +12,8 @@
         <form method="post">
             {% csrf_token %}
             {% bootstrap_form form %}
-            <button type="submit"> Cadastrar </button>
-            <button type="button"> <a href="{% url 'posto:index' %}"> Cancelar </a> </button>
+            <button type="submit" class="btn btn-success"> Salvar </button>
+            <button type="button" class="btn btn-warning"> <a href="{% url 'posto:index' %}"> Cancelar </a> </button>
         </form>
     </div>
 

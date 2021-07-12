@@ -10,9 +10,6 @@ class Escala(models.Model):
     posto_de_trabalho = models.ForeignKey(Posto, on_delete=models.CASCADE)
     data = models.DateField(help_text='Ex: 01/01/2021')
 
-    def get_absolute_url(self):
-        return reverse('escala:index', kwargs={'pk': self.pk})
-
     def __str__(self):
         return f'{self.medico.nome} - {self.posto_de_trabalho.nome_do_posto} - {self.data.strftime("%d/%m/%Y")}'
 

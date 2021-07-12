@@ -19,7 +19,7 @@
                    <th scope="col">Data de admissão</th>
                    <th scope="col">Ativo?</th>
                    <th scope="col">Posto de trabalho</th>
-                   <th scope="col">Ações</th>
+                   <th scope="col"></th>
                </tr>
             </thead>
             <tbody>
@@ -32,7 +32,6 @@
                        <td>{{medico.posto_de_trabalho}}</td>
                        <td>
                            <a href="{% url 'medicos:upd-medico' medico.pk %}"> Editar </a>
-                           <a href="{% url 'medicos:del-medico' medico.pk %}"> Deletar </a>
                        </td>
                    </tr>
                 {% endfor %}

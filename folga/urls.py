@@ -1,12 +1,11 @@
 from django.urls import path
-from .views import IndexView, CreateFolgaView, UpdateFolgaView, DeleteFolgaView, home_page
+from .views import IndexView, create_folga, update_folga, DeleteFolgaView
 
 
 app_name = 'folga'
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
-    path('home/', home_page, name='home'),
-    path('add-folga/', CreateFolgaView.as_view(), name='add-folga'),
-    path('upd-folga/<int:pk>/', UpdateFolgaView.as_view(), name='upd-folga'),
-    path('del-folga<int:pk>/', DeleteFolgaView.as_view(), name='del-folga'),
+    path('add-folga/', create_folga, name='add-folga'),
+    path('upd-folga/<int:pk>/', update_folga, name='upd-folga'),
+    path('del-folga/<int:pk>/', DeleteFolgaView.as_view(), name='del-folga'),
 ]
