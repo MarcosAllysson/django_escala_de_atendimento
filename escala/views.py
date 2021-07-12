@@ -65,12 +65,11 @@ def create_escala(request):
                     else:
                         messages.error(request, 'Verifique se posto de trabalho e médico estão ativos / aptos.')
 
-                except Exception as e:
-                    print(f'EXCEÇÃO: {e.__class__}, descrição: {e}')
+                except Exception:
                     messages.error(request, 'Opa, houve um erro...')
 
             else:
-                messages.error(request, 'Atente-se a data!')
+                messages.error(request, 'Esta data já passou.')
 
         else:
             messages.error(request, 'Houve algum erro, tente novamente.')
@@ -129,12 +128,11 @@ def update_escala(request, pk):
                     else:
                         messages.error(request, 'Verifique se posto de trabalho e médico estão ativos / aptos.')
 
-                except Exception as e:
-                    print(f'EXCEÇÃO: {e.__class__}, descrição: {e}')
+                except Exception:
                     messages.error(request, 'Opa, houve um erro...')
 
             else:
-                messages.error(request, 'Atente-se a data!')
+                messages.error(request, 'Esta data já passou.')
 
         else:
             messages.error(request, 'Houve algum erro, tente novamente.')

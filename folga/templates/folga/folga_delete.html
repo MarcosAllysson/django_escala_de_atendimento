@@ -11,7 +11,7 @@
         <form method="post">
             {% csrf_token %}
             <button type="submit"> Excluir! </button>
-            <button type="button"> <a href="{% url 'folga:index' %}"> Cancelar </a> </button>
+            <button type="button"> <a href="{% url 'folga:index' %}" style="text-decoration:none;"> Cancelar </a> </button>
         </form>
     </div>
 

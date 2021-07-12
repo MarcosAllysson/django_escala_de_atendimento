@@ -27,9 +27,15 @@
                         <th scope="row">{{posto.id}}</th>
                         <td>{{posto.nome_do_posto}}</td>
                         <td>{{posto.endereco}}</td>
-                        <td>{{posto.ativo}}</td>
                         <td>
-                            <a href="{% url 'posto:upd-posto' posto.pk %}"> Editar </a> </p>
+                            {% if posto.ativo %}
+                                <p> Sim </p>
+                            {% else %}
+                                <p> Não </p>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'posto:upd-posto' posto.pk %}" style="text-decoration: none;"> Editar </a> </p>
                         </td>
                     </tr>
                 {% endfor %}

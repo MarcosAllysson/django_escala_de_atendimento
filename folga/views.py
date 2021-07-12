@@ -48,17 +48,14 @@ def create_folga(request):
                         # redirecionando
                         return redirect('folga:index')
 
-                        # messages.success(request, 'Médico pode folgar. Está ativo e não tá em escala.')
-
                     else:
                         messages.error(request, 'Médico não pode folgar. Está inativo, em escala ou não foi encontrado.')
 
-                except Exception as e:
-                    print(f'EXCEÇÃO: {e.__class__}, descrição: {e}')
+                except Exception:
                     messages.error(request, 'Opa, houve um erro...')
 
             else:
-                messages.error(request, 'Atente-se a data!')
+                messages.error(request, 'Esta data já passou.')
 
         else:
             messages.error(request, 'Houve algum erro, tente novamente.')
@@ -114,7 +111,7 @@ def update_folga(request, pk):
                     messages.error(request, 'Opa, houve um erro...')
 
             else:
-                messages.error(request, 'Atente-se a data!')
+                messages.error(request, 'Esta data já passou.')
 
         else:
             messages.error(request, 'Houve algum erro, tente novamente.')

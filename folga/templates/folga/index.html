@@ -27,8 +27,8 @@
                        <td>{{folga.medico.nome}} {{folga.medico.sobrenome}}</td>
                        <td>{{folga.dia_de_folga}}</td>
                        <td>
-                           <a href="{% url 'folga:upd-folga' folga.id %}"> Editar </a>
-                           <a href="{% url 'folga:del-folga' folga.pk %}"> Excluir </a>
+                           <a href="{% url 'folga:upd-folga' folga.id %}" style="text-decoration:none;"> Editar </a>
+                           <a href="{% url 'folga:del-folga' folga.pk %}" style="text-decoration:none;"> Excluir </a>
                        </td>
                    </tr>
                 {% endfor %}

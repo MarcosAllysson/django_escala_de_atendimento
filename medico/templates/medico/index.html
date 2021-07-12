@@ -28,10 +28,16 @@
                        <th scope="row">{{medico.id}}</th>
                        <td>{{medico.nome}} {{medico.sobrenome}}</td>
                        <td>{{medico.data_de_admissao}}</td>
-                       <td>{{medico.ativo}}</td>
+                       <td>
+                            {% if medico.ativo %}
+                                <p> Sim </p>
+                            {% else %}
+                                <p> Não </p>
+                            {% endif %}
+                        </td>
                        <td>{{medico.posto_de_trabalho}}</td>
                        <td>
-                           <a href="{% url 'medicos:upd-medico' medico.pk %}"> Editar </a>
+                           <a href="{% url 'medicos:upd-medico' medico.pk %}" style="text-decoration:none;"> Editar </a>
                        </td>
                    </tr>
                 {% endfor %}

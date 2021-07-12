@@ -27,8 +27,8 @@
                        <td>{{escala.medico.nome}} {{escala.medico.sobrenome}}</td>
                        <td> {{escala.posto_de_trabalho}} </td>
                        <td>
-                            <a href="{% url 'escala:upd-escala' escala.pk %}"> Editar </a>
-                            <a href="{% url 'escala:del-escala' escala.pk %}"> Excluir </a>
+                            <a href="{% url 'escala:upd-escala' escala.pk %}" style="text-decoration:none;"> Editar </a>
+                            <a href="{% url 'escala:del-escala' escala.pk %}" style="text-decoration:none;"> Excluir </a>
                        </td>
                    </tr>
                 {% endfor %}
