@@ -5,12 +5,12 @@
 {% endblock title %}
 
 {% block content %}
-    <p>Adicionar: <a href="{% url 'folga:add-folga' %}"> <button class="btn btn-primary"> folga para o médico </button> </a> </p>
-    <br>
+    <a href="{% url 'folga:add-folga' %}">
+        <button class="btn btn-outline-primary mb-3"><i class="fa fa-plus"></i> Cadastrar </button>
+    </a>
 
     {% if object_list %}
-        <h1> Folga dos Médicos </h1>
-        <hr>
+        <h1> Folga </h1>
 
         <table class="table">
             <thead>
@@ -28,8 +28,12 @@
                        <td>{{folga.medico.nome}} {{folga.medico.sobrenome}}</td>
                        <td>{{folga.dia_de_folga}}</td>
                        <td>
-                           <a href="{% url 'folga:upd-folga' folga.id %}" style="text-decoration:none;"> Editar </a>
-                           <a href="{% url 'folga:del-folga' folga.pk %}" style="text-decoration:none;"> Excluir </a>
+                           <a href="{% url 'folga:upd-folga' folga.id %}">
+                                <button class="btn btn-outline-info"><i class="fa fa-edit"></i> Editar </button>
+                            </a>
+                            <a href="{% url 'folga:del-folga' folga.pk %}">
+                                <button class="btn btn-outline-danger"><i class="fa fa-minus-circle"></i> Excluir </button>
+                            </a>
                        </td>
                    </tr>
                 {% endfor %}

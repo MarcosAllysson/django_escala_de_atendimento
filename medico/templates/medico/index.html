@@ -5,12 +5,12 @@
 {% endblock title %}
 
 {% block content %}
-    <p>Adicionar: <a href="{% url 'medicos:add-medico' %}"> <button class="btn btn-primary"> novo médico </button>  </a> </p>
-    <br>
+    <a href="{% url 'medicos:add-medico' %}">
+        <button class="btn btn-outline-primary mb-3"><i class="fa fa-plus"></i> Cadastrar </button>
+    </a>
 
     {% if object_list %}
         <h1> Médicos Cadastrados </h1>
-        <hr>
 
         <table class="table">
             <thead>
@@ -38,7 +38,9 @@
                         </td>
                        <td>{{medico.posto_de_trabalho}}</td>
                        <td>
-                           <a href="{% url 'medicos:upd-medico' medico.pk %}" style="text-decoration:none;"> Editar </a>
+                           <a href="{% url 'medicos:upd-medico' medico.pk %}">
+                                <button class="btn btn-outline-info"><i class="fa fa-edit"></i> Editar </button>
+                            </a>
                        </td>
                    </tr>
                 {% endfor %}

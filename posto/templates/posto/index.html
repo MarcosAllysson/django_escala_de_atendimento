@@ -5,12 +5,12 @@
 {% endblock title %}
 
 {% block content %}
-    <p>Adicionar: <a href="{% url 'posto:add-posto' %}"> <button type="button" class="btn btn-primary"> posto de trabalho </button> </a> </p>
-    <br>
+    <a href="{% url 'posto:add-posto' %}">
+        <button class="btn btn-outline-primary mb-3"><i class="fa fa-plus"></i> Cadastrar </button>
+    </a>
 
     {% if object_list %}
         <h1> Postos de Trabalho </h1>
-        <hr>
 
         <table class="table">
             <thead>
@@ -36,7 +36,9 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a href="{% url 'posto:upd-posto' posto.pk %}" style="text-decoration: none;"> Editar </a> </p>
+                            <a href="{% url 'posto:upd-posto' posto.pk %}">
+                                <button class="btn btn-outline-info"><i class="fa fa-edit"></i> Editar </button>
+                            </a>
                         </td>
                     </tr>
                 {% endfor %}
