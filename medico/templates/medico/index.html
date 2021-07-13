@@ -5,12 +5,13 @@
 {% endblock title %}
 
 {% block content %}
-    <h1> Médicos Cadastrados </h1>
-    <hr>
     <p>Adicionar: <a href="{% url 'medicos:add-medico' %}"> <button class="btn btn-primary"> novo médico </button>  </a> </p>
     <br>
 
     {% if object_list %}
+        <h1> Médicos Cadastrados </h1>
+        <hr>
+
         <table class="table">
             <thead>
                <tr>

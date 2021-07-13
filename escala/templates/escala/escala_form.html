@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
-{% load static %}
 
 {% block title %}
     Escala
@@ -8,6 +7,7 @@
 
 {% block content %}
     <h1> Escala de Trabalho </h1>
+    <hr>
 
     <div class="container">
         {% bootstrap_messages %}
@@ -20,13 +20,3 @@
     </div>
 
 {% endblock content %}
-
-{% block scripts %}
-    <script src="{% static 'escala/js/jquery.mask.min.js' %}"></script>
-
-    <script>
-        $(document).ready(function(){
-            $("#id_data").mask("00/00/0000");
-        });
-    </script>
-{% endblock %}

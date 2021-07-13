@@ -5,12 +5,13 @@
 {% endblock title %}
 
 {% block content %}
-    <h1> Escala de Trabalho </h1>
-    <hr>
     <p>Adicionar: <a href="{% url 'escala:add-escala' %}"> <button class="btn btn-primary"> nova escala </button> </a> </p>
     <br>
 
     {% if object_list %}
+        <h1> Escala de Trabalho </h1>
+        <hr>
+
         <table class="table">
             <thead>
                <tr>

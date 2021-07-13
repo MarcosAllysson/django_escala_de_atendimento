@@ -5,12 +5,13 @@
 {% endblock title %}
 
 {% block content %}
-    <h1> Folga dos Médicos </h1>
-    <hr>
     <p>Adicionar: <a href="{% url 'folga:add-folga' %}"> <button class="btn btn-primary"> folga para o médico </button> </a> </p>
     <br>
 
     {% if object_list %}
+        <h1> Folga dos Médicos </h1>
+        <hr>
+
         <table class="table">
             <thead>
                <tr>

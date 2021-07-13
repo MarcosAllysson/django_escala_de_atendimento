@@ -5,12 +5,13 @@
 {% endblock title %}
 
 {% block content %}
-    <h1> Postos de Trabalho </h1>
-    <hr>
     <p>Adicionar: <a href="{% url 'posto:add-posto' %}"> <button type="button" class="btn btn-primary"> posto de trabalho </button> </a> </p>
     <br>
 
     {% if object_list %}
+        <h1> Postos de Trabalho </h1>
+        <hr>
+
         <table class="table">
             <thead>
                 <tr>

@@ -25,3 +25,8 @@ urlpatterns = [
     path('postos/', include('posto.urls', namespace='posto')),
     path('folga/', include('folga.urls', namespace='folga')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Customização do admin
+admin.AdminSite.site_header = 'Escala de Atendimento'
+admin.AdminSite.site_title = 'Controle Escala'
+admin.AdminSite.index_title = 'Escala Administração'

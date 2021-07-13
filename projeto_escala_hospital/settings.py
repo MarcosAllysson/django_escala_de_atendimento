@@ -35,6 +35,8 @@ ALLOWED_HOSTS = ['escaladeatendimento.herokuapp.com', '127.0.0.1']
 
 INSTALLED_APPS = [
     'bootstrap4',
+    'django_adminlte',
+    'django_adminlte_theme',
     'folga.apps.FolgaConfig',
     'escala.apps.EscalaConfig',
     'medico.apps.MedicoConfig',
