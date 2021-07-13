@@ -16,4 +16,4 @@ class Escala(models.Model):
     class Meta:
         verbose_name = 'Escala'
         verbose_name_plural = 'Escalas'
-        ordering = ['data']
+        ordering = ['-data']

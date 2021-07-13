@@ -49,13 +49,22 @@ def create_escala(request):
                     medico_escala_qs = Escala.objects.filter(medico_id=medico)
 
                     # analisando se não está de folga
-                    folga_qs = Folga.objects.filter(medico_id=medico)
+                    folga_qs = Folga.objects.filter(medico_id=medico, dia_de_folga=data_escala)
+                    medico_disponivel = False
+
+                    if len(folga_qs) > 0:
+                        if folga_qs[0].dia_de_folga != data_escala:
+                            medico_disponivel = True
+                        else:
+                            messages.error(request, 'Não é possível, pois a data da escala do médico é igual da folga.')
+                    else:
+                        medico_disponivel = True
 
                     # analisando se o posto está ativo
                     posto_qs = Posto.objects.get(id=posto)
                     posto_status = posto_qs.ativo
 
-                    if medico_status and len(medico_escala_qs) == 0 and len(folga_qs) == 0 and posto_status:
+                    if medico_status and len(medico_escala_qs) == 0 and medico_disponivel and posto_status:
                         # salvando dados
                         formulario.save()
 
@@ -65,8 +74,8 @@ def create_escala(request):
                     else:
                         messages.error(request, 'Verifique se posto de trabalho e médico estão ativos / aptos.')
 
-                except Exception:
-                    messages.error(request, 'Opa, houve um erro...')
+                except Exception as e:
+                    messages.error(request, f'Opa, houve um erro: {e}...')
 
             else:
                 messages.error(request, 'Esta data já passou.')
@@ -107,18 +116,35 @@ def update_escala(request, pk):
                     # analisando se o médico está ativo
                     medico_qs = Medico.objects.get(id=medico)
                     medico_status = medico_qs.ativo
+                    medico_disponivel = False
 
-                    # analisando se não está em escala
+                    # analisando escala do médico
                     medico_escala_qs = Escala.objects.filter(medico_id=medico)
 
+                    if len(medico_escala_qs) > 0:
+                        if medico_escala_qs[0].data != data_escala:
+                            medico_disponivel = True
+                        else:
+                            messages.error(request, 'Coloque uma data diferente da atual.')
+                    else:
+                        medico_disponivel = True
+
                     # analisando se não está de folga
-                    folga_qs = Folga.objects.filter(medico_id=medico)
+                    folga_qs = Folga.objects.filter(medico_id=medico, dia_de_folga=data_escala)
+
+                    if len(folga_qs) > 0:
+                        if folga_qs[0].dia_de_folga != data_escala:
+                            medico_disponivel = True
+                        else:
+                            messages.error(request, 'Não é possível, pois a data da escala do médico é igual da folga.')
+                    else:
+                        medico_disponivel = True
 
                     # analisando se o posto está ativo
                     posto_qs = Posto.objects.get(id=posto)
                     posto_status = posto_qs.ativo
 
-                    if medico_status and len(medico_escala_qs) == 0 and len(folga_qs) == 0 and posto_status:
+                    if medico_status and medico_disponivel and posto_status:
                         # salvando dados
                         formulario.save()
 

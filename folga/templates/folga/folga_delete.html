@@ -10,8 +10,10 @@
         <h2> Quer realmente excluir a folga do "Dr.{{object.medico}}"? </h2>
         <form method="post">
             {% csrf_token %}
-            <button type="submit"> Excluir! </button>
-            <button type="button"> <a href="{% url 'folga:index' %}" style="text-decoration:none;"> Cancelar </a> </button>
+            <button type="submit" class="btn btn-success"> Excluir! </button>
+            <button type="button" class="btn btn-warning">
+                <a href="{% url 'folga:index' %}" style="text-decoration:none;"> Cancelar </a>
+            </button>
         </form>
     </div>
 
