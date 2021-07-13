@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  app: #  nome da aplicação
+    build: .
+    volumes:
+     - .:/django # dockerfile(container)
+    ports:
+     - 8000:8000
+    image: app:django
+    container_name: django_escala_container
+    command: python manage.py runserver 0.0.0.0:8000
