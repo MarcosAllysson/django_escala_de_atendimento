@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-0us=ek0==($uf^r&@4@&wyfewx94&70b7hh1-f6cxb3d^(#ufv
 DEBUG = True
 # DEBUG = False
 
-ALLOWED_HOSTS = ['escaladeatendimento.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['escaladeatendimento.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
