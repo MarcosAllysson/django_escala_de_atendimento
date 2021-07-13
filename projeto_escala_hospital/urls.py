@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('painel/', admin.site.urls),
+    path('painel/', admin.site.urls),  # -> LOGIN: admin SENHA: admin
     path('', include('escala.urls', namespace='escala')),
     path('medicos/', include('medico.urls', namespace='medicos')),
     path('postos/', include('posto.urls', namespace='posto')),
